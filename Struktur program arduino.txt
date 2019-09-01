@@ -1,0 +1,293 @@
+Structure
+Structure dasar dari bahasa pemrograman arduino itu sederhana hanya terdiri dari dua bagian.
+==============================================================================================
+=				void setup( ){ 						     =	
+=      					// Statement;					     =	--> setup( ) bagian untuk inisialisasi yang hanya dijalankan sekali di awal program,
+=   				}							     =
+============================================================================================== 
+=				void loop( ){ 						     =
+=      					// Statement;					     =	--> loop() untuk mengeksekusi bagian program yang akan dijalankan berulang-ulang untuk selamanya.
+=   				}							     =
+==============================================================================================
+
+
+   1. setup()
+	Fungsi setup() hanya di panggil satu kali ketika program pertama kali di jalankan. Ini digunakan untuk pendefinisian mode pin atau memulai komunikasi serial. Fungsi setup() harus di ikut sertakan dalam program walaupun tidak ada statement yang di jalankan.
+	Contoh: 
+		void setup(){
+			pinMode(13,OUTPUT); // mengset ‘pin’ 13 sebagai output
+		}
+
+
+   2. loop()
+	Setelah melakukan fungsi setup() maka secara langsung akan melakukan fungsi loop() secara berurutan dan melakukan instruksi-instruksi yang ada dalam fungsi loop().
+	Contoh: 
+			void loop(){
+			digitalWrite(13, HIGH); // nyalakan ‘pin’ 13
+			delay(1000);   // pause selama 1 detik
+			digitalWrite(13, LOW); // matikan ‘pin’ 13
+			delay(1000);   /// pause selama 1 detik
+		}
+
+   3. function
+	Function adalah blok pemrograman yang mempunyai nama dan mempunyai statement yang akan di eksekusi ketika function di panggil.
+	Cara pendeklarasian function:
+			type functionName(parameters){
+			       // Statement;
+			}
+
+	Contoh:
+			int delayVal(){ 
+     				int v; // membuat variable ‘v’ bertipe integer 
+     				v = analogRead(pot); // baca nilai potentiometer 
+     				v /= 4; // konversi 0-1023 ke 0-255 
+     				return v; // return nilai v 
+   			}  
+	Pada contoh di atas fungsi tersebut memiliki nilai balik int (integer), karena kalau tidak menghendaki adanya nilai balik maka type function harus void.
+
+   4. { } curly braces
+	Curly brace mendefinisikan awal dan akhir dari sebuah blok fungsi. Apabila ketika memprogram dan progremer lupa memberi curly brace tutup maka ketika di compile akan terdapat laporan error.
+
+   5. ; semicolon
+	Semicolon harus di berikan pada setiap statement program yang kita buat. Ini merupakan pembatas setiap statement program yang di buat.
+
+   6. /*...*/ blok comment
+	Semua statement yang di tulis dalam block comments tidak akan di eksekusi dan tidak akan di compile sehingga tidak mempengaruhi besar program yang di buat untuk di masukan dalam board arduino.
+
+   7. // line comment
+	Sama halnya dengan block comments, line coments pun sama saja. Bedanya hanya saja yang dijadikan komen adalah perbaris.
+
+   8. Variable
+	Variable adalah sebuah penyimpan nilai yang dapat di gunakan dalam program. Variable dapat di rubah sesuai dengan instruksi yang kita buat. Ketika mendeklarisikan variable harus di ikut sertakan type variable serta nilai awal variable. 
+	Contoh untuk mendeklarisikan variable yaitu:
+		Type variableName = 0; 
+	Contoh 
+		Int inputVariable = 0;			 // mendefinisikan sebuah variable bernama inputVariable  dengan nilai awal 0 
+			inputVariable = analogRead(2);	 // menyimpan nilai yang ada di analog pin 2 ke 
+		inputVariable 
+
+   9. variable scope
+	sebuah variable dapat di deklarasikan pada awal program sebelum void setup(), secara local di dalam sebuah function, dan terkadang di dalam sebuah block statement pengulangan.
+	Sebuah variable global hanya satu dan dapat di gunakan pada semua block function dan statement di dalam program. Variable global di deklarasikan pada awal program sebelum fungstion setup().
+	Sebuah variable local di deklarasikan di setiap block function atau di setiap block statement pengulangan dan hanya dapat di gunakan pada block yang bersangkutan saja.
+	Contoh penggunaan:
+			int value; 	// ‘value’ adalah variable global dan dapat di gunakan pada semua block funtion 
+			void setup(){ 
+				// setup tidak dibutuhkan
+			}
+			
+			void loop(){ 
+				for (int i=0; i<20;){ // 'i' hanya dapat di gunakan dalam pengulangan saja
+					i++;
+					} 
+				float f; // 'f' sebagai variable local
+			}
+
+   10. Data type
+	Biasanya tipe data ini di gunakan untuk komunikasi wireless byte. Type byte dapat menyimpan 8-bit nilai angka bilangan asli tanapa koma. Byte memiliki range 0 – 255.
+	Contoh:
+		Byte biteVariable = 180; // mendeklarasikan ‘biteVariable’ sebagai type byte 
+
+   11. Integer
+	Integer adalah tipe data yang utama untuk menyimpan nilai bilangan bulat tanpa koma. Penyimpanan integer sebesar 16-bit dengan range 32.767 sampai -32.768.
+	Contoh:
+		Int integerVariable = 1600; // mendeklarasikan ‘integerVariable’ sebagai type integer  
+
+   12. Long
+	Perluasan ukuran untuk long integer, penyimpanan long integer sebesar 32-bit dengan range 2.147.483.647 sampai -2.147.483.648
+	Contoh:
+		Long longVariable = 500000; // mendeklarasikan ‘longVariable’ sebagai type long 
+
+   13. Float
+	Float adalah tipe data yang dapat menampung nilai decimal, float merupakan penyimpan yang lebih besar dari integer dan dapat menyimpan sebesar 32-bit dengan range 3.4028235E+38 sampai -3.4028235E+38
+	Contoh:
+		Float floatVariable = 3.14; // mendeklarasikan ‘floatVariable’ sebagai type float
+
+   14. Array
+	Array adalah kumpulan nilai yang dapat di akses dengan index number, nilai yang terdapat dalam array dapat di panggil dengan cara menuliskan nama array dan index number. Array dengan index 0 merupakan nilai pertama dari array. Array perlu di deklarasikan dan kalau perlu di beri nilai sebelum di gunakan. 
+	Contoh:
+		Int arraysName[] = {nilai0, nilai1, nilai2 . . . } 
+
+	Contoh penggunaan array: 
+
+		Int arraySaya[] = {2,4,6,8,10}
+		x = arraySaya[5]; // x sekarang sama dengan 10   
+
+   15. Operator aritmetic
+	Operator aritmatik terdiri dari penjumlahan, pengurangan, pengkalian, dan pembagian. 
+						=========================
+						=	y = y + 3;	=
+						=	x = x - 8;  	=
+						=	i = i * 5;  	=
+						=	r = r / 9;   	=
+						=========================
+
+	Dalam menggunakan operan aritmatik harus hati-hati dalam menentukan tipe data yang digunakan jangan sampai terjadi overflow range data.
+
+   16. Compound assignments
+	Compound assignments merupakan kombinasi dari aritmatic dengan sebuah variable. Ini biasanya dipakai pada pengulangan.
+			=================================================================================
+			=	x ++; // sama seperti x = x + 1 atau menaikan nilai x sebesar 1		= 
+			=	x --; // sama seperti x = x - 1 atau mengurangi nilai x sebesar 1  	=
+			=	x += y; // sama seperti x = x + y  					=
+			=	x -= y; // sama seperti x = x – y					=
+			=	x *= y; // sama seperti x = x * y					=
+			=	x /= y; // sama seperti x = x / y  					=
+			=================================================================================
+   17. Comparison
+	Statement ini membandingkan dua variable dan apabila terpenuhi akan bernilai 1 atau true. Statement ini banyak digunakan dalam operator bersyarat.
+			=========================================================
+			=	x == y; // x sama dengan y			=
+			=	x != y; // x tidak sama dengan y		=
+			=	x < y;  // x leboh kecil dari y			=
+			=	x > y;  // x lebih besar dari y			=
+			=	x <= y; // x lebih kecil dari sama dengan y	=
+			=	x >= y; // x lebih besar dari sama dengan y  	=
+			=========================================================
+
+   18. Logic operator
+	Logical operator digunakan untuk membandingkan 2 expresi dan mengembalikan nilai balik benar atau salah tergantung dari operator yang di gunakan. Terdapat 3 operator logical AND,OR, dan NOT, yang biasanya di gunakan pada if statement.
+	Contoh penggunaan:
+				Logical AND	==>	If ( x > 0 && x < 5) // bernilai benar apabila kedua operator pembanding terpenuhi
+
+				Logical OR	==>	If ( x > 0 || y > 0) // bernilai benar apabila salah satu dari operator pembanding terpenuhi  
+
+				Logical NOT	==>	If ( !x > 0 )  // benilai benar apabila ekspresi operator salah  
+
+   19. Konstanta
+	Arduino mempunyai beberapa variable yang sudah di kenal yang kita sebut konstanta. Ini membuat memprogram lebih mudah untuk di baca. Konstanta di kelasifikasi berdasarkan group.
+		--> True / false
+			Merupakan konstanta Boolean yang mendifinisikan logic level. False mendifinisikan 0 dan True mendifinisikan 1.
+			Contoh True:
+				If (  b == TRUE );
+					{
+						// lakukan sesuatu
+					}
+			Contoh False:
+				If ( b == False );
+					{
+						// lakukan sesuatu
+					}
+
+		--> High / Low
+			Konstanta ini mendifinisikan aktifitas pin HIGH atau LOW dan di gunakan ketika membaca dan menulis ke digital pin. HIGH di definisikan sebagai 1 sedangkan LOW sebagai 0.
+			Contoh penggunaan High:
+				 digitalWrite( 13, HIGH ); // menjadikan pin 13 menyala kalau diibaratkan LED
+
+			Contoh penggunaan Low:
+				digitalWrite( 13, Low); // menjadikan pin 13 mati kalau diibaratkan LED
+
+		--> Input / Output
+			Konstanta ini digunakan dengan fungsi pinMode() untuk mendifinisikam mode pin digital, sebagai input atau output
+			Contoh penggunaan OUTPUT:			
+				pinMode( 13, OUTPUT ); // menjadikan pin 13 sebagai OUTPUT
+
+			Contoh penggunaan INPUT:
+				pinMode( 13, INPUT ); // menjadikan pin 13 sebagai INPUT
+
+   20. Flow control
+		--> if
+			Operator if mengetest sebuah kondisi seperti nilai analog sudah berada di bawah nilai yang kita kehendaki atau belum, apabila terpenuhi maka akan mengeksekusi baris program yang ada dalam brackets kalau tidak terpenuhi maka akan mengabaikan baris program yang ada dalam brackets.
+			Contoh:
+				if ( someVariable ?? value ){
+					// Lakukan sesuatu;
+				}
+
+		--> if... else
+			Operator if ... else mengetest sebuah kondisi apabila tidak sesuai dengan kondisi yang pertama maka akan mengeksekusi baris program yang ada di else.
+			Contoh:				
+				if ( inputPin == HIGH ){
+					// Laksanakan rencana A;
+				}
+				else{
+					//Laksanakan rencana B;
+				}   
+
+		--> for
+			Operator for digunakan dalam blok pengulangan tertutup.
+			Contoh:
+				for ( initialization; condition; expression ){
+					 // lakukan sesuatu;
+				}  
+
+		--> while
+			Operator while akan terus mengulang baris perintah yang ada dalam bracket sampai ekspresi sebagai kondisi pengulangan benilai salah.
+			Contoh:
+				while ( someVariable ?? value ){ 
+					// lakukan sesuatu;
+				}
+
+		--> do... while
+			Sama halnya dengan while() hanya saja pada operator do ... while tidak melakukan pengecekan pada awal tapi di akhir, sehingga otomatis akan melakukan satu kali baris perintah walaupun pada awalnya sudah terpenuhi.
+			Contoh:
+				do{
+					// lakukan sesuatu;
+				}
+				while ( someVariable ?? value ); 
+
+
+   21. Digital I/O
+	Input / Output Digital pada breadboard arduino ada 14, pengalamatnya 0 - 13, ada saat tertentu I/O 0 dan 1 tidak bisa di gunakan karena di pakai untuk komunikasi serial, sehingga harus hati-hati dalam pengalokasian I/O.
+
+		--> pinMode(pin, mode)
+			Digunakan dalam void setup() untuk mengkonfigurasi pin apakah sebagai Input atau Output. Arduino digital pins secara default di konfigurasi sebagai input sehingga untuk merubahnya harus menggunakan operator pinMode(pin, mode).
+			Contoh:			
+				pinMode (pin, OUTPUT); // mengset pin sebagai output
+				digitalWrite(pin, HIGH); // pin sebagai source voltage 
+
+		--> digitalRead(pin)
+			membaca nilai dari pin yang kita kehendaki dengan hasil HIGH atau LOW. 
+			Contoh:			
+				Value = digitalRead(pin); // mengset ‘value’ sama dengan pin
+				digitalWrite(pin, value); // digunakan untuk mengset pin digital. Pin digital arduino mempunyai 14 ( 0 – 13 ).
+				digitalWrite ( pin, HIGH ); // mengeset pin menjadi HIGH  
+
+   22. Analog I/O
+	Input / Ouput analog pada breadboard arduino ada 6 pengalamatnya 0 - 5 
+
+		--> analogRead(pin)
+			Membaca nilai pin analog yang memiliki resolusi 10-bit. Fungsi ini hanya dapat bekerja pada analog pin (0-5). Hasil dari pembacaan berupa nilai integer dengan range 0 sampai 1023.
+			Contoh:
+				Value = analogRead(pin); // mengset ‘value’ sama dengan nilai analog pin 
+				analogWrite(pin, value); // mengirimkan nilai analog pada pin analog. 
+				analogWrite(pin, value); // menulis ke pin analog 
+
+   23. Time
+		--> delay(ms)
+			Menghentikan program untuk sesaat sesuai dengan yang di kehendaki, satuanya dalam millisecond. 
+			Contoh:
+				delay(1000); // menunggu selama satu detik  
+
+		--> millis()
+			Mengembalikan nilai dalam millisecond dihitung sejak arduino board menyala. Penapungnya harus long integer.
+			Contoh:
+				Value = millis(); // set ‘value’ equal to millis() 
+
+   24.Math
+		--> min(x,y)
+			Membadingkan 2 variable dan akan mengembalikan nilai yang paling kecil. 
+			Contoh:
+				value = min(value, 100); // set ‘value’ sebagai nilai yang paling kecil dari kedua nilai 
+
+		--> max(x,y)
+			Max merupakan kebalikan dari min. 
+			Contoh:
+				value = max(value, 100); //set ‘value’ sebagai nilai yang paling besar dari kedua nilai  
+
+   25. Serial
+		--> Serial.begin(rate)
+		Statement ini di gunakan untuk mengaktifkan komunikasi serial dan mengset baudrate. 
+		Contoh:
+			void setup(){
+				Serial.begin(9600); //open serial port and set baudrate 9600 bps
+			} 
+
+		--> Serial.prinln(data)
+		Mengirimkan data ke serial port. 
+		Contoh:
+		Serial.println(100); // mengirimkan 100
+
+   26. Interrupt
+		Dapat mengeksekusi logika, namun setelah logika sebelumnya telah dieksekusi.
+		Contoh:
+			attachInterrupt(digitalPinToInterrupt(pin), fungsi, mode);
